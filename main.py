@@ -41,6 +41,23 @@ def load_market_data():
     return prices
 
 
+def print_portfolio(title, portfolio):
+
+    print("\n" + "=" * 60)
+    print(title)
+    print("=" * 60)
+
+    print(f"Expected Return : {portfolio['return']:.3f}")
+    print(f"Portfolio Risk  : {portfolio['risk']:.3f}")
+    print(f"Sharpe Ratio    : {portfolio['sharpe']:.3f}")
+    print(f"Sortino Ratio   : {portfolio['sortino']:.3f}")
+
+    print("\nPortfolio Allocation")
+
+    for ticker, weight in zip(TICKERS, portfolio["weights"]):
+        print(f"{ticker:6} : {weight*100:.2f}%")
+
+
 def main():
 
     print("=" * 60)
@@ -66,15 +83,15 @@ def main():
 
     safest = minimum_risk_portfolio(portfolios)
 
-    print("\nMaximum Sharpe Portfolio")
-    print(f"Return : {best[0]:.3f}")
-    print(f"Risk   : {best[1]:.3f}")
-    print(f"Sharpe : {best[2]:.3f}")
+    print_portfolio(
+        "MAXIMUM SHARPE PORTFOLIO",
+        best
+    )
 
-    print("\nMinimum Risk Portfolio")
-    print(f"Return : {safest[0]:.3f}")
-    print(f"Risk   : {safest[1]:.3f}")
-    print(f"Sharpe : {safest[2]:.3f}")
+    print_portfolio(
+        "MINIMUM RISK PORTFOLIO",
+        safest
+    )
 
     plot_efficient_frontier(portfolios)
 
