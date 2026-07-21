@@ -9,10 +9,14 @@ from portfolio import (
     calculate_expected_return,
     calculate_volatility,
     calculate_sharpe_ratio,
+    calculate_sortino_ratio,
 )
 
 
-def generate_random_portfolios(returns, num_portfolios=5000):
+def generate_random_portfolios(
+    returns,
+    num_portfolios=5000
+):
 
     num_assets = returns.shape[1]
 
@@ -24,36 +28,46 @@ def generate_random_portfolios(returns, num_portfolios=5000):
 
         weights /= np.sum(weights)
 
-        portfolio_return = calculate_expected_return(
-            weights,
-            returns
-        )
+        results.append({
 
-        portfolio_risk = calculate_volatility(
-            weights,
-            returns
-        )
+            "weights": weights,
 
-        sharpe = calculate_sharpe_ratio(
-            weights,
-            returns
-        )
+            "return": calculate_expected_return(
+                weights,
+                returns
+            ),
 
-        results.append([
-            portfolio_return,
-            portfolio_risk,
-            sharpe,
-            weights
-        ])
+            "risk": calculate_volatility(
+                weights,
+                returns
+            ),
+
+            "sharpe": calculate_sharpe_ratio(
+                weights,
+                returns
+            ),
+
+            "sortino": calculate_sortino_ratio(
+                weights,
+                returns
+            )
+
+        })
 
     return results
 
 
 def maximum_sharpe_portfolio(results):
 
-    return max(results, key=lambda x: x[2])
+    return max(
+        results,
+        key=lambda x: x["sharpe"]
+    )
 
 
 def minimum_risk_portfolio(results):
 
-    return min(results, key=lambda x: x[1])
+    return min(
+        results,
+        key=lambda x: x["risk"]
+    )
