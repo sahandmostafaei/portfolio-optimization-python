@@ -4,6 +4,7 @@
 
 - Modern Portfolio Theory (MPT)
 - Portfolio Optimization
+- Real Historical Market Data
 - Monte Carlo Portfolio Simulation
 - Efficient Frontier
 - Sharpe Ratio
@@ -17,21 +18,22 @@
 
 ## Overview
 
-This project demonstrates quantitative portfolio analysis using Python and applies principles from Modern Portfolio Theory (MPT) to evaluate investment portfolios.
+This project demonstrates quantitative portfolio analysis using Python by applying Modern Portfolio Theory (MPT) to real financial market data. Historical stock prices are downloaded using Yahoo Finance, enabling the analysis of portfolio risk, return, diversification, and risk-adjusted performance.
 
-The project analyses portfolio risk and return, simulates thousands of random portfolios, and identifies efficient investment allocations using risk-adjusted performance measures.
+The project simulates thousands of possible portfolios and identifies efficient investment allocations using quantitative finance techniques commonly applied in asset management and investment banking.
 
 ---
 
 ## Objectives
 
-- Analyse financial market returns
-- Measure portfolio performance
-- Calculate portfolio risk
-- Generate random portfolios
-- Evaluate Sharpe Ratio
-- Explore diversification
-- Demonstrate quantitative investment analysis
+- Download historical market data
+- Analyse financial asset returns
+- Measure portfolio risk and expected return
+- Generate random investment portfolios
+- Calculate Sharpe Ratios
+- Study diversification
+- Apply Modern Portfolio Theory
+- Visualise the Efficient Frontier
 
 ---
 
@@ -42,6 +44,7 @@ The project analyses portfolio risk and return, simulates thousands of random po
 - NumPy
 - SciPy
 - Matplotlib
+- Yahoo Finance (yfinance)
 
 ---
 
@@ -56,9 +59,11 @@ portfolio-optimization-python/
 ├── optimization.py
 ├── visualization.py
 
-├── PROJECT.md
 ├── requirements.txt
 ├── README.md
+├── PROJECT.md
+├── LICENSE
+├── .gitignore
 
 ├── data/
 └── figures/
@@ -68,66 +73,20 @@ portfolio-optimization-python/
 
 ## Financial Concepts
 
-This repository demonstrates practical applications of:
+The project demonstrates practical applications of:
 
-- Modern Portfolio Theory
-- Diversification
-- Portfolio Risk
-- Portfolio Return
-- Covariance
-- Correlation
+- Modern Portfolio Theory (Harry Markowitz)
+- Portfolio Diversification
+- Expected Return
+- Portfolio Volatility
+- Correlation Analysis
+- Covariance Matrix
 - Efficient Frontier
 - Sharpe Ratio
+- Risk-Adjusted Performance
 
 ---
 
-## Current Features
+## Workflow
 
-- Portfolio return calculation
-- Portfolio volatility calculation
-- Sharpe Ratio calculation
-- Correlation matrix
-- Covariance matrix
-- Random portfolio simulation
-- Efficient Frontier visualization
-
----
-
-## Applications
-
-- Asset Management
-- Wealth Management
-- Investment Banking
-- Quantitative Finance
-- Financial Analytics
-- Portfolio Management
-
----
-
-## Future Development
-
-Planned improvements include:
-
-- CAPM
-- Beta estimation
-- Alpha calculation
-- Black-Litterman Portfolio Model
-- Value at Risk (VaR)
-- Conditional Value at Risk (CVaR)
-- Historical market data from Yahoo Finance
-
----
-
-## Author
-
-**Sahand Mostafaei**
-
-Bachelor of Science in Electrical Engineering
-
-Interested in Quantitative Finance, Portfolio Management, Banking Analytics, and Financial Risk Management.
-
----
-
-## Disclaimer
-
-This project is intended for educational and research purposes only.
+1. Download
