@@ -6,53 +6,66 @@ Author: Sahand Mostafaei
 import numpy as np
 
 
+TRADING_DAYS = 252
+
+
 def calculate_expected_return(weights, returns):
-    """
-    Calculate annualized portfolio expected return.
-    """
 
-    portfolio_return = np.sum(returns.mean() * weights) * 252
-
-    return portfolio_return
-
+    return np.sum(returns.mean() * weights) * TRADING_DAYS
 
 
 def calculate_volatility(weights, returns):
-    """
-    Calculate annualized portfolio volatility.
-    """
 
-    portfolio_volatility = np.sqrt(
+    covariance = returns.cov() * TRADING_DAYS
+
+    return np.sqrt(
         np.dot(
             weights.T,
-            np.dot(
-                returns.cov() * 252,
-                weights
-            )
+            np.dot(covariance, weights)
         )
     )
 
-    return portfolio_volatility
 
-
-
-def calculate_sharpe_ratio(weights, returns, risk_free_rate=0.02):
-    """
-    Calculate annualized Sharpe Ratio.
-    """
+def calculate_sharpe_ratio(
+    weights,
+    returns,
+    risk_free_rate=0.02
+):
 
     portfolio_return = calculate_expected_return(
         weights,
         returns
     )
 
-    portfolio_volatility = calculate_volatility(
+    portfolio_risk = calculate_volatility(
         weights,
         returns
     )
 
-    sharpe_ratio = (
+    return (
         portfolio_return - risk_free_rate
-    ) / portfolio_volatility
+    ) / portfolio_risk
 
-    return sharpe_ratio
+
+def calculate_sortino_ratio(
+    weights,
+    returns,
+    risk_free_rate=0.02
+):
+
+    portfolio_returns = returns.dot(weights)
+
+    downside = portfolio_returns[
+        portfolio_returns < 0
+    ]
+
+    if len(downside) == 0:
+        return np.nan
+
+    downside_deviation = downside.std() * np.sqrt(TRADING_DAYS)
+
+    annual_return = portfolio_returns.mean() * TRADING_DAYS
+
+    return (
+        annual_return - risk_free_rate
+    ) / downside_deviation
