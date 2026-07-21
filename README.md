@@ -1,37 +1,37 @@
 # Portfolio Optimization & Asset Allocation
 
+## Key Features
+
+- Modern Portfolio Theory (MPT)
+- Portfolio Optimization
+- Monte Carlo Portfolio Simulation
+- Efficient Frontier
+- Sharpe Ratio
+- Portfolio Expected Return
+- Portfolio Volatility
+- Correlation Analysis
+- Covariance Matrix
+- Python Financial Analytics
+
+---
+
 ## Overview
 
-This project demonstrates quantitative portfolio analysis using Python. It applies concepts from modern portfolio theory, risk management, and financial modelling to analyse asset returns and construct optimized investment portfolios.
+This project demonstrates quantitative portfolio analysis using Python and applies principles from Modern Portfolio Theory (MPT) to evaluate investment portfolios.
 
-The project reflects analytical techniques used in asset management, investment banking, and quantitative finance.
+The project analyses portfolio risk and return, simulates thousands of random portfolios, and identifies efficient investment allocations using risk-adjusted performance measures.
 
 ---
 
 ## Objectives
 
-- Analyse historical financial market data
-- Calculate asset returns
-- Measure portfolio risk and performance
-- Study relationships between assets
-- Apply Modern Portfolio Theory
-- Optimize portfolio weights
-- Evaluate risk-adjusted returns
-
----
-
-## Key Features
-
-- Historical price data analysis
-- Return calculation
-- Volatility measurement
-- Correlation analysis
-- Covariance matrix analysis
-- Portfolio expected return
-- Portfolio risk calculation
-- Sharpe Ratio calculation
-- Efficient Frontier optimization
-- Monte Carlo portfolio simulation
+- Analyse financial market returns
+- Measure portfolio performance
+- Calculate portfolio risk
+- Generate random portfolios
+- Evaluate Sharpe Ratio
+- Explore diversification
+- Demonstrate quantitative investment analysis
 
 ---
 
@@ -42,13 +42,12 @@ The project reflects analytical techniques used in asset management, investment 
 - NumPy
 - SciPy
 - Matplotlib
-- Yahoo Finance API
 
 ---
 
 ## Repository Structure
 
-```
+```text
 portfolio-optimization-python/
 
 ├── main.py
@@ -57,9 +56,9 @@ portfolio-optimization-python/
 ├── optimization.py
 ├── visualization.py
 
+├── PROJECT.md
 ├── requirements.txt
 ├── README.md
-├── LICENSE
 
 ├── data/
 └── figures/
@@ -69,45 +68,53 @@ portfolio-optimization-python/
 
 ## Financial Concepts
 
-### Modern Portfolio Theory
+This repository demonstrates practical applications of:
 
-The project applies the principles introduced by Harry Markowitz, focusing on balancing expected return and portfolio risk through diversification.
+- Modern Portfolio Theory
+- Diversification
+- Portfolio Risk
+- Portfolio Return
+- Covariance
+- Correlation
+- Efficient Frontier
+- Sharpe Ratio
 
-### Sharpe Ratio
+---
 
-Risk-adjusted performance is evaluated using the Sharpe Ratio:
+## Current Features
 
-Sharpe Ratio = (Portfolio Return - Risk Free Rate) / Portfolio Volatility
-
-### CAPM
-
-The Capital Asset Pricing Model is used to analyse expected returns relative to market risk.
+- Portfolio return calculation
+- Portfolio volatility calculation
+- Sharpe Ratio calculation
+- Correlation matrix
+- Covariance matrix
+- Random portfolio simulation
+- Efficient Frontier visualization
 
 ---
 
 ## Applications
 
-The project is relevant to:
-
 - Asset Management
+- Wealth Management
 - Investment Banking
 - Quantitative Finance
-- Portfolio Management
-- Risk Management
 - Financial Analytics
+- Portfolio Management
 
 ---
 
 ## Future Development
 
-Planned improvements:
+Planned improvements include:
 
-- Efficient Frontier visualization
-- Maximum Sharpe Ratio portfolio
-- Minimum volatility portfolio
-- CAPM analysis
-- Factor modelling
-- Portfolio dashboard
+- CAPM
+- Beta estimation
+- Alpha calculation
+- Black-Litterman Portfolio Model
+- Value at Risk (VaR)
+- Conditional Value at Risk (CVaR)
+- Historical market data from Yahoo Finance
 
 ---
 
@@ -117,10 +124,10 @@ Planned improvements:
 
 Bachelor of Science in Electrical Engineering
 
-Interested in quantitative finance, banking, investment analysis, and financial modelling.
+Interested in Quantitative Finance, Portfolio Management, Banking Analytics, and Financial Risk Management.
 
 ---
 
 ## Disclaimer
 
-This project is developed for educational purposes only and does not constitute financial advice.
+This project is intended for educational and research purposes only.
