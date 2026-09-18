@@ -1,157 +1,261 @@
-# Portfolio Optimization & Asset Allocation
+# Portfolio Optimization in Python
+
+A quantitative portfolio-analysis project examining the relationship between portfolio expected return, volatility, and risk-adjusted performance using historical financial-market data.
+
+The project uses Monte Carlo simulation to generate feasible portfolios and analyze their risk–return characteristics.
 
 ## Overview
 
-This project implements Modern Portfolio Theory (MPT) to construct and evaluate investment portfolios using historical market data.
+Portfolio construction involves balancing expected return against investment risk while considering diversification and investor constraints.
 
-The application retrieves financial market data directly from Yahoo Finance, calculates portfolio statistics, generates thousands of random portfolios using Monte Carlo simulation, and identifies optimal portfolios based on risk-adjusted performance.
+This project develops a Python-based framework for:
 
-The project demonstrates quantitative finance concepts commonly used in portfolio management, investment analysis, and asset allocation.
+- Historical market-data retrieval
+- Return calculation
+- Portfolio return estimation
+- Portfolio volatility estimation
+- Sharpe ratio analysis
+- Sortino ratio analysis
+- Monte Carlo portfolio simulation
+- Portfolio risk–return visualization
+- Asset-level and portfolio-level analysis
 
----
+The project is intended as a quantitative finance demonstration of portfolio theory implemented in Python.
 
-## Objectives
+## Investment Universe
 
-- Download historical market data automatically
-- Calculate daily and annualized returns
-- Compute portfolio volatility
-- Perform Monte Carlo portfolio simulation
-- Maximize the Sharpe Ratio
-- Identify the Minimum Risk Portfolio
-- Calculate the Sortino Ratio
-- Generate the Efficient Frontier
-- Analyse correlation and covariance between assets
+The analysis uses a diversified set of exchange-traded assets representing different asset classes and market exposures.
 
----
+The portfolio universe includes:
 
-## Data Source
+- SPY — U.S. equities
+- EFA — Developed-market equities outside the U.S.
+- EEM — Emerging-market equities
+- TLT — U.S. long-duration Treasury bonds
+- GLD — Gold
+- DBC — Broad commodities
+- VNQ — U.S. real estate investment trusts
 
-Historical market data is retrieved directly from **Yahoo Finance** using the **yfinance** Python package.
+The combination provides exposure to equities, fixed income, commodities, and real estate.
 
-The project automatically downloads market prices when executed, ensuring that portfolio optimization is performed using up-to-date financial data.
+## Methodology
 
-The `data/` directory is reserved for optional cached datasets and therefore does not contain stock price CSV files by default.
+The project follows a standard quantitative portfolio-analysis workflow.
 
----
+Historical price data
+      ↓
+Adjusted-price data
+      ↓
+Return calculation
+      ↓
+Portfolio simulation
+      ↓
+Expected return and volatility
+      ↓
+Sharpe and Sortino ratios
+      ↓
+Risk–return analysis
+      ↓
+Portfolio visualization
 
-## Features
+## Data
 
-- Automatic retrieval of historical market data using Yahoo Finance (`yfinance`)
-- Portfolio return calculation
-- Portfolio volatility calculation
-- Monte Carlo simulation
-- Modern Portfolio Theory implementation
-- Efficient Frontier visualization
-- Maximum Sharpe Ratio portfolio
-- Minimum Risk portfolio
-- Sortino Ratio calculation
-- Correlation matrix
-- Covariance matrix
-- Portfolio allocation reporting
+Historical market data are retrieved using the `yfinance` Python package.
 
----
+The analysis uses adjusted market prices where available so that the return calculations are designed to account for distributions and other relevant price adjustments reflected in the adjusted series.
 
-## Technologies
+Returns are calculated from the historical observations and used as the basis for portfolio-level calculations.
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- yfinance
+## Portfolio Construction
 
----
+The Monte Carlo component generates random portfolio-weight combinations subject to the portfolio constraints implemented in the project.
 
-## Repository Structure
+For each simulated portfolio, the framework calculates:
 
-```text
+- Expected annualized return
+- Annualized volatility
+- Sharpe ratio
+- Sortino ratio
+- Portfolio weights
+
+The simulated portfolios are then used to examine the feasible risk–return opportunity set.
+
+## Monte Carlo Portfolio Opportunity Set
+
+The project visualizes simulated portfolios in expected-return and volatility space.
+
+This produces a Monte Carlo portfolio opportunity set showing the distribution of feasible portfolios under the specified constraints.
+
+The simulated opportunity set should be distinguished from a formally optimized mathematical efficient frontier.
+
+A formal efficient frontier requires solving an optimization problem for a sequence of target-return or risk constraints. The present project focuses on Monte Carlo simulation and portfolio analytics rather than claiming that the simulated scatter itself is the exact efficient frontier.
+
+## Portfolio Return
+
+Portfolio expected return is calculated from the weighted expected returns of the underlying assets.
+
+The annualized expected return is:
+
+Portfolio Return = Σ(wᵢ × E[Rᵢ]) × 252
+
+where:
+
+- wᵢ is the portfolio weight of asset i
+- E[Rᵢ] is the mean daily return of asset i
+- 252 represents the approximate number of trading days per year
+
+## Portfolio Risk
+
+Portfolio volatility is calculated using the covariance matrix of asset returns.
+
+The portfolio variance is:
+
+σₚ² = wᵀΣw
+
+where:
+
+- w is the vector of portfolio weights
+- Σ is the covariance matrix of asset returns
+
+Volatility is then annualized using the square root of the approximate number of trading days.
+
+## Sharpe Ratio
+
+The Sharpe ratio measures excess portfolio return relative to portfolio volatility.
+
+Sharpe Ratio = (Rₚ − Rf) / σₚ
+
+where:
+
+- Rₚ is annualized portfolio return
+- Rf is the annualized risk-free rate
+- σₚ is annualized portfolio volatility
+
+The default risk-free rate used by the analytical functions is 2%, unless another value is supplied.
+
+## Sortino Ratio
+
+The Sortino ratio evaluates portfolio performance relative to downside risk rather than total volatility.
+
+Sortino Ratio = (Rₚ − MAR) / Downside Deviation
+
+where:
+
+- Rₚ is annualized portfolio return
+- MAR is the minimum acceptable return
+- Downside Deviation measures the dispersion of returns below the target
+
+The implementation calculates downside deviation from the squared shortfall of portfolio returns below a daily target derived from the annual risk-free rate.
+
+## Risk–Return Analysis
+
+The project examines the trade-off between expected return and portfolio risk across the simulated portfolios.
+
+The resulting analysis can be used to investigate:
+
+- Diversification effects
+- Portfolio volatility
+- Expected-return dispersion
+- Risk-adjusted performance
+- The relationship between portfolio composition and risk
+- The effect of combining assets with different return characteristics
+
+## Visualizations
+
+The project generates visualizations of the simulated portfolio universe and related portfolio statistics.
+
+Typical outputs include:
+
+- Simulated portfolio risk–return distributions
+- Portfolio performance comparisons
+- Asset-level return characteristics
+- Portfolio risk metrics
+
+Generated figures are stored in the `figures/` directory.
+
+## Project Structure
+
 portfolio-optimization-python/
-
+│
 ├── data/
-│   └── README.md
-
+│   └── market data
+│
 ├── figures/
-
-├── portfolio.py
+│   └── generated figures
+│
 ├── optimization.py
-├── statistics.py
+├── portfolio.py
 ├── visualization.py
 ├── main.py
-
-├── PROJECT.md
-├── RESULTS.md
-├── ROADMAP.md
-├── CHANGELOG.md
-
-├── README.md
 ├── requirements.txt
-├── LICENSE
-```
+├── PROJECT.md
+└── README.md
 
----
+## Source Modules
 
-## Workflow
+| Module | Purpose |
+|---|---|
+| `optimization.py` | Portfolio simulation and optimization-related calculations |
+| `portfolio.py` | Portfolio return, volatility, Sharpe ratio, and Sortino ratio calculations |
+| `visualization.py` | Portfolio and risk–return visualizations |
+| `main.py` | Main analytical workflow |
 
-1. Download historical market prices from Yahoo Finance
-2. Calculate daily returns
-3. Compute correlation and covariance matrices
-4. Generate random portfolios
-5. Calculate expected return and portfolio risk
-6. Compute Sharpe Ratio and Sortino Ratio
-7. Identify optimal portfolios
-8. Plot the Efficient Frontier
-9. Display portfolio allocation results
+## Key Quantitative Finance Concepts
 
----
-
-## Financial Concepts
+The project demonstrates practical implementation of:
 
 - Modern Portfolio Theory
-- Asset Allocation
-- Portfolio Optimization
 - Diversification
-- Expected Return
-- Portfolio Volatility
-- Sharpe Ratio
-- Sortino Ratio
-- Efficient Frontier
-- Risk Management
+- Portfolio expected return
+- Covariance matrices
+- Portfolio volatility
+- Risk-adjusted performance
+- Sharpe ratio
+- Sortino ratio
+- Monte Carlo simulation
+- Asset allocation
+- Risk–return analysis
 
----
+## Technical Skills
 
-## Applications
+- Python
+- pandas
+- NumPy
+- SciPy
+- Matplotlib
+- yfinance
+- Quantitative finance
+- Financial data analysis
+- Portfolio analytics
+- Statistical analysis
 
-This project demonstrates analytical techniques used in:
+## Limitations
 
-- Investment Management
-- Wealth Management
-- Portfolio Construction
-- Quantitative Finance
-- Asset Management
-- Financial Analytics
+The Monte Carlo approach provides a simulated opportunity set rather than an analytically derived efficient frontier.
 
----
+The analysis also relies on historical return characteristics, which may not persist in future market conditions.
 
-## Future Improvements
+Additional extensions could include:
 
-- CAPM expected returns
-- Black-Litterman portfolio optimization
-- Value at Risk (VaR)
-- Conditional Value at Risk (CVaR)
-- Interactive dashboard
-- Additional optimization methods
+- Formal mean-variance optimization
+- Long-only optimization constraints
+- Target-return optimization
+- Maximum-Sharpe optimization
+- Minimum-variance optimization
+- Alternative risk measures
+- Robust covariance estimation
+- Transaction costs
+- Portfolio turnover constraints
+- Out-of-sample evaluation
 
----
+## Interpretation
 
-## Author
+The project is designed to demonstrate the implementation of portfolio theory and quantitative investment analysis rather than to provide investment recommendations.
 
-**Sahand Mostafaei**
-
-Bachelor of Science in Electrical Engineering
-
-Interested in Banking, Investment Management, Quantitative Finance, Financial Risk Management, and Data Analytics.
-
----
+Historical simulations and portfolio statistics should therefore be interpreted as analytical outputs rather than forecasts of future investment performance.
 
 ## Disclaimer
 
-This project is intended for educational purposes only and should not be considered investment or financial advice.
+This project is intended for educational, research, and portfolio purposes.
+
+The analysis does not constitute investment advice or a recommendation to buy or sell any security.
